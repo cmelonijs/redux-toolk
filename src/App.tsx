@@ -1,24 +1,24 @@
-import { useCallback, useEffect } from 'react';
-import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import GamePage from './features/games/GamePage';
-import { getGames } from './features/games/GameSlice';
-import { useAppDispatch } from './store/store';
-import Navbar from './components/Navbar';
+import { useCallback, useEffect } from "react";
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import GamePage from "./features/games/GamePage";
+import { getGames } from "./features/games/GameSlice";
+import { useAppDispatch } from "./store/store";
+import Navbar from "./components/Navbar";
 
 function App() {
   const dispatch = useAppDispatch();
 
   const initApp = useCallback(async () => {
-    await dispatch(getGames())
+    await dispatch(getGames());
   }, [dispatch]);
 
   useEffect(() => {
-    initApp()
-  }, [])
+    initApp();
+  }, []);
   return (
     <BrowserRouter>
-    <Navbar />
+      <Navbar />
       <Routes>
         <Route path="/" element={<GamePage />} />
       </Routes>
