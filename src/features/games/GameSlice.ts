@@ -29,6 +29,20 @@ export const getGames = createAsyncThunk<Game[]>(
   }
 );
 
+export const getGameById = createAsyncThunk<string, Game>(
+    "games/getGameById",
+    async (id, thunkAPI) => {
+        try {
+            const response = await axios.post(
+                `http://localhost:8000/api/games/game/${id}`,
+            );
+            return response.data;
+        } catch(err) {
+            return thunkAPI.rejectWithValue(err);
+        }
+    }
+)   
+
 export const createGame = createAsyncThunk<Object, Game>(
   "games/createGame",
   async (data, thunkAPI) => {
