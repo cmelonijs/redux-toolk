@@ -1,20 +1,21 @@
+import { Container, Grid } from "@mui/material";
 import { useAppSelector } from "../../store/store";
 
 const GamePage = () => {
     const {games} = useAppSelector(state => state.games)
     return (
-        <div>
-            <h1>Game Page</h1>
-            <ul>
+        <Container>
+            <Grid>
                 {games && games.map((game) => {
                     return (
-                        <li key={game._id}>
+                        <Grid key={game._id} xs={3} sx={{backgroundImage: 'linear-gradient(90deg, green, blue)'}}>
                             <p>{game.name}</p>
-                        </li>
+                            <p>{game.address}</p>
+                        </Grid>
                     )
                 })}
-            </ul>
-        </div>
+            </Grid>
+        </Container>
     )
 }
 
