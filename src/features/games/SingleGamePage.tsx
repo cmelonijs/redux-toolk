@@ -1,5 +1,9 @@
+import { Container, Grid, Typography } from "@mui/material";
+
 const SingleGamePage = () => {
-  return <h1>Single game page</h1>;
+  return <Container sx={{marginTop: 20}}>
+      <Typography variant="h4" fontWeight="600">SIngle Game</Typography>
+  </Container>;
 };
 
 export default SingleGamePage;

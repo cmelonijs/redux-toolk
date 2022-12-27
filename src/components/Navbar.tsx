@@ -12,8 +12,13 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import { Link } from "react-router-dom";
 
-const pages = ["Home", "Partite", "Blog"];
+const pages = [
+  {title: "Home", route: "/"},
+  {title: "Games", route: "/games"},
+  {title: "Blog", route: "/blog"}
+];
 const settings = ["Profile", "Account", "Dashboard", "Logout", "Login"];
 
 function Navbar() {
@@ -92,11 +97,13 @@ function Navbar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography fontWeight={600} textAlign="center">
-                    {page}
-                  </Typography>
-                </MenuItem>
+                <Link to={page.route}>
+                  <MenuItem key={page.title} onClick={handleCloseNavMenu}>
+                    <Typography fontWeight={600} textAlign="center">
+                      {page.title}
+                    </Typography>
+                  </MenuItem>
+                </Link>
               ))}
             </Menu>
           </Box>
@@ -121,18 +128,20 @@ function Navbar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{
-                  my: 2,
-                  color: "white",
-                  display: "block",
-                  fontWeight: 600,
-                }}
-              >
-                {page}
-              </Button>
+              <Link to={page.route}>
+                <Button
+                  key={page.title}
+                  onClick={handleCloseNavMenu}
+                  sx={{
+                    my: 2,
+                    color: "white",
+                    display: "block",
+                    fontWeight: 600,
+                  }}
+                >
+                  {page.title}
+                </Button>
+              </Link>
             ))}
           </Box>
 
