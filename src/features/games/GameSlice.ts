@@ -29,7 +29,7 @@ export const getGames = createAsyncThunk<Game[]>(
   }
 );
 
-export const getGameById = createAsyncThunk<string, Game>(
+export const getGameById = createAsyncThunk<Game, string>(
     "games/getGameById",
     async (id, thunkAPI) => {
         try {
@@ -77,6 +77,17 @@ export const gameSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(getGames.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    });
+    builder.addCase(getGameById.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getGameById.fulfilled, (state, action) => {
+      state.singleGame = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(getGameById.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload;
     });
