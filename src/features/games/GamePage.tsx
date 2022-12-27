@@ -10,22 +10,22 @@ const GamePage = () => {
         {games &&
           games.map((game) => {
             return (
-              
-                <Grid
-                  key={game._id}
-                  xs={3}
-                  sx={{
-                    border: "1px solid black",
-                    borderRadius: "5px",
-                    margin: "1rem",
-                    padding: "1rem",
-                    width: "27%",
-                  }}
-                >
-                  <Link to={`/game/${game._id}`}><p>{game.name ? game.name : 'Nessun Nome'}</p></Link>
-                  <p>{game.address}</p>
-                </Grid>
-              
+              <Grid
+                key={game._id}
+                xs={3}
+                sx={{
+                  border: "1px solid black",
+                  borderRadius: "5px",
+                  margin: "1rem",
+                  padding: "1rem",
+                  width: "27%",
+                }}
+              >
+                <Link to={`/game/${game._id}`}>
+                  <p>{game.name ? game.name : "Nessun Nome"}</p>
+                </Link>
+                <p>{game.address}</p>
+              </Grid>
             );
           })}
       </Grid>
