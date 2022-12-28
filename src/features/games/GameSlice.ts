@@ -33,7 +33,7 @@ export const getGameById = createAsyncThunk<Game, string>(
   "games/getGameById",
   async (id, thunkAPI) => {
     try {
-      const response = await axios.post(
+      const response = await axios.get(
         `http://localhost:8000/api/games/game/${id}`
       );
       return response.data;
