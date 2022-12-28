@@ -15,7 +15,24 @@ const SingleGamePage = () => {
   }, [id]);
 
   return <Container sx={{marginTop: 20}}>
-      <Typography variant="h4" fontWeight="600">{`${singleGame?.address} - ${new Date(singleGame!.date).toLocaleDateString()}`}</Typography>
+      <Typography variant="h4" fontWeight="600">{`${singleGame?.time && singleGame?.time} - ${singleGame?.address} - ${singleGame?.date && new Date(singleGame!.date).toLocaleDateString()}`}</Typography>
+      <Grid container>
+        <Grid item xs={4}>
+          <Typography variant="h6">
+            {singleGame?.name}
+          </Typography>
+        </Grid>
+        <Grid item xs={4}>
+          <Typography variant="h6">
+            {singleGame?.numberOfPeople}
+          </Typography>
+        </Grid>
+        <Grid item xs={4}>
+          <Typography variant="h6">
+            {singleGame?.time}
+          </Typography>
+        </Grid>
+      </Grid>
   </Container>;
 };
 
