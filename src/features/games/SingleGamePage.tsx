@@ -6,34 +6,34 @@ import { getGameById } from "./GameSlice";
 
 const SingleGamePage = () => {
   const dispatch = useAppDispatch();
-  const {singleGame} = useAppSelector(state => state.games);
-  const {id} = useParams()
+  const { singleGame } = useAppSelector((state) => state.games);
+  const { id } = useParams();
 
   useEffect(() => {
-    if(!id) return;
-    dispatch(getGameById(id))
+    if (!id) return;
+    dispatch(getGameById(id));
   }, [id]);
 
-  return <Container sx={{marginTop: 20}}>
-      <Typography variant="h4" fontWeight="600">{`${singleGame?.time && singleGame?.time} - ${singleGame?.address} - ${singleGame?.date && new Date(singleGame!.date).toLocaleDateString()}`}</Typography>
+  return (
+    <Container sx={{ marginTop: 20 }}>
+      <Typography variant="h4" fontWeight="600">{`${
+        singleGame?.time && singleGame?.time
+      } - ${singleGame?.address} - ${
+        singleGame?.date && new Date(singleGame!.date).toLocaleDateString()
+      }`}</Typography>
       <Grid container>
         <Grid item xs={4}>
-          <Typography variant="h6">
-            {singleGame?.name}
-          </Typography>
+          <Typography variant="h6">{singleGame?.name}</Typography>
         </Grid>
         <Grid item xs={4}>
-          <Typography variant="h6">
-            {singleGame?.numberOfPeople}
-          </Typography>
+          <Typography variant="h6">{singleGame?.numberOfPeople}</Typography>
         </Grid>
         <Grid item xs={4}>
-          <Typography variant="h6">
-            {singleGame?.time}
-          </Typography>
+          <Typography variant="h6">{singleGame?.time}</Typography>
         </Grid>
       </Grid>
-  </Container>;
+    </Container>
+  );
 };
 
 export default SingleGamePage;

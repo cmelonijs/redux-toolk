@@ -15,9 +15,9 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { Link } from "react-router-dom";
 
 const pages = [
-  {title: "Home", route: "/"},
-  {title: "Games", route: "/games"},
-  {title: "Add Game", route: "/creategame"}
+  { title: "Home", route: "/" },
+  { title: "Games", route: "/games" },
+  { title: "Add Game", route: "/creategame" },
 ];
 const settings = ["Profile", "Account", "Dashboard", "Logout", "Login"];
 
@@ -152,7 +152,7 @@ function Navbar() {
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: "45px", border: '1px solid red' }}
+              sx={{ mt: "45px", border: "1px solid red" }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
