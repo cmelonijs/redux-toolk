@@ -1,8 +1,11 @@
 import { Typography, Container, TextField, Grid, Button } from "@mui/material";
 import { useState } from "react";
+import { useAppDispatch } from "../../store/store";
+import { createGame } from "./GameSlice";
 // import { Game } from "../../interfaces/Games";
 
 const CreateGamePage = () => {
+  const dispatch = useAppDispatch()
   // const [game, setGame] = useState<Game>({ // TO DO: ADD TYPE GAME TO USESTATE
   const [game, setGame] = useState({
     name: "",
@@ -12,6 +15,27 @@ const CreateGamePage = () => {
     time: "",
     fieldNumber: 0,
   });
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    let data = {
+      name: game.name,
+      address: game.address,
+      numberOfPeople: game.numberOfPeople,
+      date: game.date,
+      time: game.time,
+      fieldNumber: game.fieldNumber,
+    }
+    dispatch(createGame(data)) 
+    setGame({
+      name: "",
+      address: "",
+      numberOfPeople: 0,
+      date: "",
+      time: "",
+      fieldNumber: 0,
+    })
+  }
 
   return (
     <Container sx={{ marginTop: 5 }}>
@@ -53,11 +77,10 @@ const CreateGamePage = () => {
           </Grid>
           <Grid item xs={12}>
             <TextField
-              type="datetime"
+              type="date"
               onChange={(e) => setGame({ ...game, date: e.target.value })}
               value={game.date}
               fullWidth
-              label="date"
             />
           </Grid>
           <Grid item xs={12}>
@@ -80,7 +103,7 @@ const CreateGamePage = () => {
             />
           </Grid>
           <Grid sx={{ margin: "2rem auto" }}>
-            <Button variant="contained" disableElevation>
+            <Button onClick={handleSubmit} variant="contained" disableElevation>
               Create
             </Button>
           </Grid>

@@ -43,7 +43,7 @@ export const getGameById = createAsyncThunk<Game, string>(
   }
 );
 
-export const createGame = createAsyncThunk<Object, Game>(
+export const createGame = createAsyncThunk<Game, Object>(
   "games/createGame",
   async (data, thunkAPI) => {
     try {
