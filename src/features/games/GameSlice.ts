@@ -59,6 +59,35 @@ export const createGame = createAsyncThunk<Game, Object>(
   }
 );
 
+export const updateGame = createAsyncThunk<Game, Game>(
+  "games/updateGame",
+  async (data, thunkAPI) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:8000/api/games/game/${data._id}`,
+        data
+      );
+      return response.data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err);
+    }
+  }
+);
+
+export const deleteGame = createAsyncThunk<string, string>(
+  "games/deleteGame",
+  async (id, thunkAPI) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:8000/api/games/game/${id}`
+      );
+      return response.data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err);
+    }
+  }
+);
+
 // REDUCERS (which handle the state)
 export const gameSlice = createSlice({
   name: "games",
@@ -88,6 +117,17 @@ export const gameSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(getGameById.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    });
+    builder.addCase(updateGame.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(updateGame.fulfilled, (state, action) => {
+      state.singleGame = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(updateGame.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload;
     });

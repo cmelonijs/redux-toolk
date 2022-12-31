@@ -26,7 +26,7 @@ const SingleGamePage = () => {
           <Typography variant="h6">{singleGame?.name}</Typography>
         </Grid>
         <Grid item xs={4}>
-          <Typography variant="h6">{singleGame?.numberOfPeople}</Typography>
+           <Typography variant="h6">Numero spettatori: {singleGame?.numberOfPeople}</Typography>
         </Grid>
         <Grid item xs={4}>
           <Typography variant="h6">{singleGame?.time}</Typography>
