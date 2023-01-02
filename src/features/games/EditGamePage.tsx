@@ -1,11 +1,10 @@
-import { Typography, Container, TextField, Grid, Button } from "@mui/material";
 import { useState, MouseEvent } from "react";
 import { useAppDispatch } from "../../store/store";
-import { createGame } from "./GameSlice";
-// import { Game } from "../../interfaces/Games";
+import { updateGame } from "./GameSlice";
+import { Typography, Container, TextField, Grid, Button } from "@mui/material";
 
-const CreateGamePage = () => {
-  const dispatch = useAppDispatch()
+const EditGamePage = () => {
+    const dispatch = useAppDispatch()
   // const [game, setGame] = useState<Game>({ // TO DO: ADD TYPE GAME TO USESTATE
   const [game, setGame] = useState({
     name: "",
@@ -26,7 +25,7 @@ const CreateGamePage = () => {
       time: game.time,
       fieldNumber: game.fieldNumber,
     }
-    dispatch(createGame(data)) 
+    // dispatch(updateGame(data: any)) 
     setGame({
       name: "",
       address: "",
@@ -45,7 +44,7 @@ const CreateGamePage = () => {
           fontWeight={600}
           variant="h4"
         >
-          Create game
+          edit game
         </Typography>
         <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -104,7 +103,7 @@ const CreateGamePage = () => {
           </Grid>
           <Grid sx={{ margin: "2rem auto" }}>
             <Button onClick={handleSubmit} variant="contained" disableElevation>
-              Create
+              edit
             </Button>
           </Grid>
         </Grid>
@@ -113,4 +112,5 @@ const CreateGamePage = () => {
   );
 };
 
-export default CreateGamePage;
+
+export default EditGamePage;
