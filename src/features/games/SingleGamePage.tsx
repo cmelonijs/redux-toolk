@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import { getGameById } from "./GameSlice";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const SingleGamePage = () => {
   const dispatch = useAppDispatch();
@@ -27,7 +27,9 @@ const SingleGamePage = () => {
           <Typography variant="h6">{singleGame?.name}</Typography>
         </Grid>
         <Grid item xs={4}>
-           <Typography variant="h6">Numero spettatori: {singleGame?.numberOfPeople}</Typography>
+          <Typography variant="h6">
+            Numero spettatori: {singleGame?.numberOfPeople}
+          </Typography>
         </Grid>
         <Grid item xs={4}>
           <Typography variant="h6">{singleGame?.time}</Typography>

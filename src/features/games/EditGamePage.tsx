@@ -5,14 +5,14 @@ import { Typography, Container, TextField, Grid, Button } from "@mui/material";
 import { useParams } from "react-router";
 
 const EditGamePage = () => {
-    const dispatch = useAppDispatch();
-    const {singleGame} = useAppSelector(state => state.games);
-    const {id} = useParams()
+  const dispatch = useAppDispatch();
+  const { singleGame } = useAppSelector((state) => state.games);
+  const { id } = useParams();
 
-    useEffect(() => {
-        if(!id) return;
-        dispatch(getGameById(id))
-    }, [])
+  useEffect(() => {
+    if (!id) return;
+    dispatch(getGameById(id));
+  }, []);
 
   // const [game, setGame] = useState<Game>({ // TO DO: ADD TYPE GAME TO USESTATE
   const [game, setGame] = useState({
@@ -24,7 +24,6 @@ const EditGamePage = () => {
     fieldNumber: singleGame?.fieldNumber,
   });
 
-
   const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     let data = {
@@ -35,9 +34,9 @@ const EditGamePage = () => {
       date: game.date,
       time: game.time,
       fieldNumber: game.fieldNumber,
-    }
-    dispatch(updateGame(data))
-  }
+    };
+    dispatch(updateGame(data));
+  };
 
   return (
     <Container sx={{ marginTop: 5 }}>
@@ -47,7 +46,9 @@ const EditGamePage = () => {
           fontWeight={600}
           variant="h4"
         >
-          <>{game.name} - {game.address} - {game.time} - {game.date}</>
+          <>
+            {game.name} - {game.address} - {game.time} - {game.date}
+          </>
         </Typography>
         <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -115,6 +116,5 @@ const EditGamePage = () => {
     </Container>
   );
 };
-
 
 export default EditGamePage;

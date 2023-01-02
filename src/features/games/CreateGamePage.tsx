@@ -5,7 +5,7 @@ import { createGame } from "./GameSlice";
 // import { Game } from "../../interfaces/Games";
 
 const CreateGamePage = () => {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   // const [game, setGame] = useState<Game>({ // TO DO: ADD TYPE GAME TO USESTATE
   const [game, setGame] = useState({
     name: "",
@@ -25,8 +25,8 @@ const CreateGamePage = () => {
       date: game.date,
       time: game.time,
       fieldNumber: game.fieldNumber,
-    }
-    dispatch(createGame(data)) 
+    };
+    dispatch(createGame(data));
     setGame({
       name: "",
       address: "",
@@ -34,8 +34,8 @@ const CreateGamePage = () => {
       date: "",
       time: "",
       fieldNumber: 0,
-    })
-  }
+    });
+  };
 
   return (
     <Container sx={{ marginTop: 5 }}>
