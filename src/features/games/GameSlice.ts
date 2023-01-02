@@ -67,6 +67,7 @@ export const updateGame = createAsyncThunk<Game, Object | any>(
         `http://localhost:8000/api/games/game/${data._id}`,
         data
       );
+      thunkAPI.dispatch(getGames());
       return response.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err);
@@ -81,6 +82,7 @@ export const deleteGame = createAsyncThunk<string, string>(
       const response = await axios.delete(
         `http://localhost:8000/api/games/game/${id}`
       );
+      thunkAPI.dispatch(getGames());
       return response.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err);

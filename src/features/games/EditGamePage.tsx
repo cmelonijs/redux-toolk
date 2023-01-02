@@ -1,13 +1,14 @@
 import { useState, MouseEvent, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/store";
-import { getGameById, updateGame } from "./GameSlice";
+import { deleteGame, getGameById, updateGame } from "./GameSlice";
 import { Typography, Container, TextField, Grid, Button } from "@mui/material";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router-dom";
 
 const EditGamePage = () => {
   const dispatch = useAppDispatch();
   const { singleGame } = useAppSelector((state) => state.games);
   const { id } = useParams();
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (!id) return;
@@ -37,6 +38,13 @@ const EditGamePage = () => {
     };
     dispatch(updateGame(data));
   };
+
+  const handleDelete = (e: MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      if(!id) return;
+      dispatch(deleteGame(id))
+      navigate('/')
+  }
 
   return (
     <Container sx={{ marginTop: 5 }}>
@@ -109,6 +117,11 @@ const EditGamePage = () => {
           <Grid sx={{ margin: "2rem auto" }}>
             <Button onClick={handleSubmit} variant="contained" disableElevation>
               edit
+            </Button>
+          </Grid>
+          <Grid sx={{ margin: "2rem auto" }}>
+            <Button onClick={handleDelete} sx={{backgroundColor: 'red'}} variant="contained" disableElevation>
+              delete
             </Button>
           </Grid>
         </Grid>
