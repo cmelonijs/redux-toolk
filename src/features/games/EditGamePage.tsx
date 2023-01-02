@@ -1,23 +1,34 @@
-import { useState, MouseEvent } from "react";
-import { useAppDispatch } from "../../store/store";
-import { updateGame } from "./GameSlice";
+import { useState, MouseEvent, useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../store/store";
+import { getGameById, updateGame } from "./GameSlice";
 import { Typography, Container, TextField, Grid, Button } from "@mui/material";
+import { useParams } from "react-router";
 
 const EditGamePage = () => {
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
+    const {singleGame} = useAppSelector(state => state.games);
+    const {id} = useParams()
+
+    useEffect(() => {
+        if(!id) return;
+        dispatch(getGameById(id))
+    }, [])
+
   // const [game, setGame] = useState<Game>({ // TO DO: ADD TYPE GAME TO USESTATE
   const [game, setGame] = useState({
-    name: "",
-    address: "",
-    numberOfPeople: 0,
-    date: "",
-    time: "",
-    fieldNumber: 0,
+    name: singleGame?.name,
+    address: singleGame?.address,
+    numberOfPeople: singleGame?.numberOfPeople,
+    date: singleGame?.date,
+    time: singleGame?.time,
+    fieldNumber: singleGame?.fieldNumber,
   });
+
 
   const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     let data = {
+      _id: id,
       name: game.name,
       address: game.address,
       numberOfPeople: game.numberOfPeople,
@@ -25,15 +36,7 @@ const EditGamePage = () => {
       time: game.time,
       fieldNumber: game.fieldNumber,
     }
-    // dispatch(updateGame(data: any)) 
-    setGame({
-      name: "",
-      address: "",
-      numberOfPeople: 0,
-      date: "",
-      time: "",
-      fieldNumber: 0,
-    })
+    dispatch(updateGame(data))
   }
 
   return (
@@ -44,7 +47,7 @@ const EditGamePage = () => {
           fontWeight={600}
           variant="h4"
         >
-          edit game
+          <>{game.name} - {game.address} - {game.time} - {game.date}</>
         </Typography>
         <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -80,6 +83,7 @@ const EditGamePage = () => {
               onChange={(e) => setGame({ ...game, date: e.target.value })}
               value={game.date}
               fullWidth
+              label={game.date?.toString().substring(0, 10)}
             />
           </Grid>
           <Grid item xs={12}>
