@@ -9,6 +9,8 @@ import { useAppDispatch } from "./store/store";
 import Navbar from "./components/Navbar";
 import EditGamePage from "./features/games/EditGamePage";
 import LoginPage from "./features/account/LoginPage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -22,6 +24,7 @@ function App() {
   }, []);
   return (
     <BrowserRouter>
+    <ToastContainer />
       <Navbar />
       <Routes>
         <Route path="/" element={<GamePage />} />
