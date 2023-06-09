@@ -18,6 +18,7 @@ const pages = [
   { title: "Home", route: "/" },
   { title: "Games", route: "/games" },
   { title: "Add Game", route: "/creategame" },
+  { title: "Login", route: "/login" },
 ];
 const settings = ["Profile", "Account", "Dashboard", "Logout", "Login"];
 

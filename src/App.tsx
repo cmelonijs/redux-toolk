@@ -8,6 +8,7 @@ import { getGames } from "./features/games/GameSlice";
 import { useAppDispatch } from "./store/store";
 import Navbar from "./components/Navbar";
 import EditGamePage from "./features/games/EditGamePage";
+import LoginPage from "./features/account/LoginPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -27,6 +28,7 @@ function App() {
         <Route path="/game/:id" element={<SingleGamePage />} />
         <Route path="/editgame/:id" element={<EditGamePage />} />
         <Route path="/creategame" element={<CreateGamePage />} />
+        <Route path="/Login" element={<LoginPage />} />
       </Routes>
     </BrowserRouter>
   );
