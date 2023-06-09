@@ -8,7 +8,7 @@ const EditGamePage = () => {
   const dispatch = useAppDispatch();
   const { singleGame } = useAppSelector((state) => state.games);
   const { id } = useParams();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!id) return;
@@ -40,11 +40,11 @@ const EditGamePage = () => {
   };
 
   const handleDelete = (e: MouseEvent<HTMLButtonElement>) => {
-      e.preventDefault();
-      if(!id) return;
-      dispatch(deleteGame(id))
-      navigate('/')
-  }
+    e.preventDefault();
+    if (!id) return;
+    dispatch(deleteGame(id));
+    navigate("/");
+  };
 
   return (
     <Container sx={{ marginTop: 5 }}>
@@ -120,7 +120,12 @@ const EditGamePage = () => {
             </Button>
           </Grid>
           <Grid sx={{ margin: "2rem auto" }}>
-            <Button onClick={handleDelete} sx={{backgroundColor: 'red'}} variant="contained" disableElevation>
+            <Button
+              onClick={handleDelete}
+              sx={{ backgroundColor: "red" }}
+              variant="contained"
+              disableElevation
+            >
               delete
             </Button>
           </Grid>

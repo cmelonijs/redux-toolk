@@ -10,9 +10,7 @@ const GamePage = () => {
       <Grid sx={{ display: "flex", flexWrap: "wrap" }}>
         {games &&
           games.map((game) => {
-            return (
-              <GameCard key={game._id} game={game} />
-            );
+            return <GameCard key={game._id} game={game} />;
           })}
       </Grid>
     </Container>
