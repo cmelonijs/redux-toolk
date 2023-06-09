@@ -1,0 +1,16 @@
+.game-card {
+    color: 'white';
+    border-radius: 10px;
+    margin: 2px;
+    padding: 20px;
+    border: 1px solid lightgray;
+    min-height: 150px;
+    min-width: 50px;
+    transition: all 0.5s ease-in-out;
+
+}
+
+.game-card:hover {
+    box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+    transition: 0.5s ease-out;
+}
